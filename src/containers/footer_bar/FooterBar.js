@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import RecentTicket from "./components/lower_components/recent_ticket/RecentTicket";
-import TopCategorie from "./components/lower_components/top_categories/TopCategorie";
-import New from "./components/main_components/new/New";
-import Footer from "./containers/footer/Footer";
-import Header from "./containers/header/Header";
-import Main from "./containers/main/Main";
-import Menu from "./containers/menu/Menu";
-import Navbar from "./containers/navbar/Navbar";
+import variables from "../../variables";
 
-function App() {
+export default function FooterBar() {
+
 
   const allColors = ["primary", "secondary", "danger", "warning", "info", "light", "dark", "white"];
 
@@ -24,29 +18,15 @@ function App() {
     const nextColor = allColors[nextIndex];
     
     setColor(method, nextColor);
+    variables.color = nextColor;
   };
 
   const setColor = (method, nextColor) => {
     method(nextColor);
   }
+
   return (
-    <div className={`App bg-${backgroundColor} text-${fontColor}`}>
-      <Navbar />
-      <div className="container">
-        <div className="row d-flex">
-          <Menu primaryColor={primaryColor}/>
-          <div className="col-12 col-sm-8 col-lg-9">
-            <Header secondaryColor={secondaryColor}/>
-            <Main secondaryColor={secondaryColor} />
-          </div>
-        </div>
-        <div className="row">
-          <New secondaryColor={secondaryColor} fontColor={fontColor}/>
-          <RecentTicket primaryColor={primaryColor}/>
-          <TopCategorie secondaryColor={secondaryColor}/>
-        </div>
-        <Footer />
-        <footer className={`d-flex justify-content-evenly col-sm-12 col-md-10 col-lg-8 fixed-bottom bg-light rounded mx-auto mb-2 border p-1`} style={{ height: "70px" }}>
+<footer className={`d-flex justify-content-evenly col-sm-12 col-md-10 col-lg-8 fixed-bottom bg-light rounded mx-auto mb-2 border p-1`} style={{ height: "70px" }}>
   <button className={`btn border col-sm-3 col-md-2 btn-${backgroundColor}`} onClick={() => switchColor(backgroundColor, setBackgroundColor)}>
     Background
   </button>
@@ -60,9 +40,6 @@ function App() {
     Secondary
   </button>
 </footer>
-      </div>
-    </div>
+
   );
 }
-
-export default App;
